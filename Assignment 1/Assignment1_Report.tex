@@ -1,0 +1,103 @@
+\documentclass[conference]{article}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{booktabs}
+
+\title{ECG Heartbeat Classification}
+\author{Nguyen Duc Phuong}
+\date{March 2024}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Heart disease is the number one cause of death worldwide, regardless of gender and race. This emphasizes how important early detection, diagnosis, and treatment are. \\
+
+
+A heartbeat is a vital sign that shows the heart is working properly. An electrocardiogram (ECG) records the electrical signals in the heart. It's a common and painless test used to quickly detect heart problems and monitor the heart's health. \\
+
+Machine learning techniques can play a pivotal role in automating and enhancing the accuracy of cardiac disease detection. \\
+
+\section{Dataset Description}
+
+This dataset is composed of two collections of heartbeat signals derived from two famous datasets in heartbeat classification, the MIT-BIH Arrhythmia Dataset and The PTB Diagnostic ECG Database. The signals correspond to electrocardiogram (ECG) shapes of heartbeats for the normal case and the cases affected by different arrhythmias and myocardial infarction. These signals are preprocessed and segmented, with each segment corresponding to a heartbeat.
+
+
+\section{Method}
+
+Convolutional Neural Networks (CNNs) are extremely useful for ECG data processing because of their capacity to automatically train and extract features from raw data, handle noise, and record temporal relationships. Their use in ECG analysis can improve the accuracy and efficiency of cardiovascular disease diagnosis, adding important clinical value and practical importance. \\
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    Type & \# Channels & Kernel Size & Stride & Padding \\ \hline
+    Convolution 1D & 64 & 6 & 1 & Same \\ \hline
+    Batch Normalization & - & - & - & - \\ \hline
+    Max Pooling 1D & - & 3 & 2 & Same \\ \hline
+    Convolution 1D & 64 & 3 & 1 & Same \\ \hline
+    Batch Normalization & - & - & - & - \\ \hline
+    Max Pooling 1D & - & 2 & 2 & Same \\ \hline
+    Flatten & - & - & - & - \\ \hline
+    Dense & 64 & - & - & - \\ \hline
+    Dense & 32 & - & - & - \\ \hline
+    Dense & 5 & - & - & - \\ \hline
+    \end{tabular}
+    \caption{Convolutional Neural Network Architecture}
+    \label{tab:my_label}
+\end{table}
+
+
+\section{Evaluation}
+
+The neural network performed well, with an overall accuracy of 98\%. It has attained nearly flawless precision and recall for classes 0 and 4. However, there is space for improvement in classes 1 and 3, where the recall is 79\% and 73\% respectively, showing some occurrences of these classes were incorrectly detected. Overall, the model performs admirably, although more tuning could improve its capacity to identify underrepresented classes.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \toprule
+        & Precision & Recall & F1-Score & Support \\
+        \midrule
+        0.0 & 0.99 & 0.99 & 0.99 & 18118 \\
+        1.0 & 0.80 & 0.79 & 0.79 & 556 \\
+        2.0 & 0.96 & 0.95 & 0.95 & 1448 \\
+        3.0 & 0.84 & 0.73 & 0.78 & 162 \\
+        4.0 & 1.00 & 0.98 & 0.99 & 1608 \\
+        \midrule
+        \textbf{Accuracy} & & & 0.98 & 21892 \\
+        \textbf{Macro Avg} & 0.92 & 0.89 & 0.90 & 21892 \\
+        \textbf{Weighted Avg} & 0.98 & 0.98 & 0.98 & 21892 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Convolutional Neural Networks Classification Results}
+    \label{tab:classification_results}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.6\textwidth}
+        \centering
+        \includegraphics[width=1\textwidth]{./matrix.png}
+        \caption{Confusion matrix}
+        \label{fig: Confusion matrix}
+    \end{minipage}\hfill
+\end{figure}
+
+\section{Conclusion}
+
+This study shows how Convolution Neural Networks can accurately classify heart diseases using an ECG dataset. The positive results show that convolution neural network models can make a substantial contribution to the area of cardiology by automating and enhancing disease detection accuracy.
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
