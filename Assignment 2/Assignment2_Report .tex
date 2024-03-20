@@ -1,0 +1,63 @@
+\documentclass[conference]{article}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{booktabs}
+
+\title{Measurement of Fetal Head Circumference}
+\author{Nguyen Duc Phuong}
+\date{March 2024}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+Fetal head circumference is an important indicator, denoted as HC (Head Circumference), to help assess fetal development through each week of pregnancy, thereby helping to detect abnormalities early in the pregnancy. children can get it. The doctor could evaluate the head circumference index and other important indicators of the fetus based on certain weeks of pregnancy, to check the normal level of development of the baby. \\
+
+\section{Dataset Description}
+
+The dataset consists of 1334 two-dimensional (2D) ultrasound images of the standard plane of fetuses (a training set of 999 images and a test set of 335 images).There are a few CSV files containing additional information about the images. Each image in the dataset is resized to 540 x 800 for the model to train.  \\
+
+
+\section{Method}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    Type        & \# Filters & Kernel Size & Activation & Other Details \\ \hline
+    Conv2D      & 16         & (3, 3)      & ReLU       & Input Shape: input\_shape \\ \hline
+    MaxPooling2D&            & (2, 2)      &            &                     \\ \hline
+    Conv2D      & 32         & (3, 3)      & ReLU       &                     \\ \hline
+    MaxPooling2D&            & (2, 2)      &            &                     \\ \hline
+    Conv2D      & 64         & (3, 3)      & ReLU       &                     \\ \hline
+    Flatten     &            &             &            &                     \\ \hline
+    Dense       & 64         &             & ReLU       &                     \\ \hline
+    Dropout     &            &             &            & Rate: 0.4           \\ \hline
+    Dense       & 1          &             &            &                     \\
+    \hline
+    \end{tabular}
+    \caption{Convolutional Neural Network Architecture}
+    \label{tab:model_layers}
+\end{table}
+
+\section{Evaluation}
+
+
+\section{Conclusion}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
